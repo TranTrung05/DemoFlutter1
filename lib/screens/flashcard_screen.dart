@@ -48,6 +48,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
   @override
   Widget build(BuildContext context) {
     if (_vocabs.isEmpty) {
+      // hiện thị các tbao
       return Scaffold(
         appBar: AppBar(title: Text('Học từ vựng')),
         body: Center(child: Text('Chưa có từ nào , tthêm từ vựng trước')),
@@ -60,7 +61,9 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          // Expanded làm cho Card chiếm hết không gian còn lại ngoại trừ hàng nút
           Expanded(
+            // GestureDetector bắt sự kiện khi chạm nút
             child: GestureDetector(
               onTap: () => setState(() => _showMeaning = !_showMeaning),
               child: Card(
@@ -80,7 +83,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               ElevatedButton(onPressed: _prevCard, child: Text('Trước')),
-              Text('${_currentIndex+1} / ${_vocabs.length}', style: TextStyle(fontSize: 18)),
+              Text('${_currentIndex+1} / ${_vocabs.length}', style: TextStyle(fontSize: 18)),//
               ElevatedButton(onPressed: _nextCard, child: Text('Sau ')),
             ],
           ),

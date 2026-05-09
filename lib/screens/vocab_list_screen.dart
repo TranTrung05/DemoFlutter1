@@ -23,9 +23,10 @@ class _VocabListScreenState extends State<VocabListScreen> {
     super.initState();
     _loadVocabs();
   }
-
+ // Tạo hộp thoại động
   void _showEditDialog({Vocab? vocab}) {
-    final wordCtrl = TextEditingController(text: vocab?.word ?? '');
+    // tọa các controllers và điền dữ liệu vào vocab cũ
+    final wordCtrl = TextEditingController(text: vocab?.word ?? '');// vocab null thì chuỗi rỗng , k null thì lấy vocab.word
     final meanCtrl = TextEditingController(text: vocab?.meaning ?? '');
     final exCtrl = TextEditingController(text: vocab?.example ?? '');
     showDialog(
@@ -34,6 +35,7 @@ class _VocabListScreenState extends State<VocabListScreen> {
         title: Text(vocab == null ? 'Thêm từ' : 'Sửa từ'),
         content: Column(
           mainAxisSize: MainAxisSize.min,
+          // 3 Text Feild
           children: [
             TextField(controller: wordCtrl, decoration: InputDecoration(labelText: 'Từ vựng')),
             TextField(controller: meanCtrl, decoration: InputDecoration(labelText: 'Nghĩa')),
@@ -44,6 +46,7 @@ class _VocabListScreenState extends State<VocabListScreen> {
           TextButton(onPressed: () => Navigator.pop(context), child: Text('Hủy')),
           TextButton(
             onPressed: () async {
+              // lấy dữ liẹue , tạo vocab mới gọi 2 hàm insert và update
               if (wordCtrl.text.isNotEmpty) {
                 final newVocab = Vocab(
                   id: vocab?.id,
@@ -56,8 +59,8 @@ class _VocabListScreenState extends State<VocabListScreen> {
                 } else {
                   await db.updateVocab(newVocab);
                 }
-                _loadVocabs();
-                Navigator.pop(context);
+                _loadVocabs();// cập nhật lại
+                Navigator.pop(context);// đóng dialog
               }
             },
             child: Text('Lưu'),

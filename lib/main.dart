@@ -8,9 +8,11 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // MaterialApp cung cấp các thàn phần design marterial, quản lý điều hướng
     return MaterialApp(
       title: 'Ghi chú + Học từ vựng',
       theme: ThemeData(primarySwatch: Colors.blue),
+      // DefaultTabController quản lý trạng thái tarbar , cần length = số tab
       home: DefaultTabController(
         length: 3,
         child: Scaffold(
@@ -24,6 +26,7 @@ class MyApp extends StatelessWidget {
               ],
             ),
           ),
+          // hiện thị nội dụng tương ứng với tab đã chọn , mỗi tab sẽ có 1 witgh riêng nên sẽ gọi từng hàm khác nhau dưới
           body: TabBarView(
             children: [
               NoteListScreen(),

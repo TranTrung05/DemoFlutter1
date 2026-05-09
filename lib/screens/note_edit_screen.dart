@@ -11,10 +11,11 @@ class NoteEditScreen extends StatefulWidget {
 }
 
 class _NoteEditScreenState extends State<NoteEditScreen> {
-  final _titleController = TextEditingController();
+  final _titleController = TextEditingController();// hàm có sẵn để quản lý văn bản trong TextFeild
   final _contentController = TextEditingController();
   final db = DatabaseHelper();
 
+  // điền dữ liệu cũ nếu có
   @override
   void initState() {
     super.initState();
@@ -25,7 +26,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
   }
 
   Future<void> _save() async {
-    final title = _titleController.text.trim();
+    final title = _titleController.text.trim();// bỏ khoảng trắng
     final content = _contentController.text.trim();
     if (title.isEmpty) return;
 
@@ -33,7 +34,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
       final newNote = Note(
         title: title,
         content: content,
-        createdAt: DateTime.now(),
+        createdAt: DateTime.now(),// lấy thời điểm hiện tại
       );
       await db.insertNote(newNote);
     } else {
@@ -48,6 +49,7 @@ class _NoteEditScreenState extends State<NoteEditScreen> {
     Navigator.pop(context);
   }
 
+  // 2 TextFeild và nút Save
   @override
   Widget build(BuildContext context) {
     return Scaffold(
