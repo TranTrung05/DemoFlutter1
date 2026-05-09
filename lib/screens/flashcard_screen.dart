@@ -50,7 +50,7 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
     if (_vocabs.isEmpty) {
       return Scaffold(
         appBar: AppBar(title: Text('Học từ vựng')),
-        body: Center(child: Text('Chưa có từ nào. Hãy thêm từ vựng trước.')),
+        body: Center(child: Text('Chưa có từ nào , tthêm từ vựng trước')),
       );
     }
 
@@ -79,9 +79,9 @@ class _FlashcardScreenState extends State<FlashcardScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              ElevatedButton(onPressed: _prevCard, child: Text('◀ Trước')),
+              ElevatedButton(onPressed: _prevCard, child: Text('Trước')),
               Text('${_currentIndex+1} / ${_vocabs.length}', style: TextStyle(fontSize: 18)),
-              ElevatedButton(onPressed: _nextCard, child: Text('Sau ▶')),
+              ElevatedButton(onPressed: _nextCard, child: Text('Sau ')),
             ],
           ),
           SizedBox(height: 16),
